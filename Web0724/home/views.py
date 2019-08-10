@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from home.models import User
+from home.models import User,Voice,Comment
 from .form import UserForm
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    voices = Voice.objects.all()
+    return render(request, 'home.html', {"voices": voices})
 
 def register(request):
     if request.method == "POST":
@@ -67,3 +68,4 @@ def logout(request):
         # del request.session['user_id']
         # del request.session['user_name']
         return redirect("/^home/")
+

@@ -6,21 +6,27 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/static/css/register.css">
 <link rel="stylesheet" type="text/css" href="/static/css/video.css">
+<script src="/static/js/audioplayer.js"></script>
 {% endblock %}
+<style>
+    react-player {
+        display: none;
+	    position: absolute;
+    }
 
+</style>
 {% block content1 %}
 <div class="container-fluid overflow-x-hidden">
     <div>
         <div class="slider slick-slider mb-4 slick-list " style="padding:0px 50px;">
             <div class="center">
-                    <div class="slick-slider">
+                {% for voice in voices %}
+                    <div class="slick-slider mt-2">
                         <div class="video-container">
-                            <iframe id="player" width="640" height="390" src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com" frameborder="0"></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/Lg7MbK7Zk28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
-                    <div class="slick-slider">2</div>
-                    <div class="slick-slider">3</div>
-                    <div class="slick-slider">4</div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -33,9 +39,34 @@
             </div>
             <div class="col-sm-8 col-md-8 col-lg-8">
                 &nbsp;<h3>YoutubeVoice 即時熱門</h3>
+                <div class="col-sm-8 col-md-8 col-lg-10 mb-2 text-right">
+                    <button class="btn-danger" type="button">全部播放</button>
+                </div>
+                <div id="song_list">
+                    <ul class="list-group list-group-flush mb-5">
+                        {% for voice in voices %}
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="mr-2"><h4>{{voice.id}}</h4></div>
+                            <div>
+                                <a href="#">{{voice.Songname}}</a>
+                                <p>{{voice.author}}</p>
+                            </div>
+                        </li>
+                        {% endfor%}
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+    <div class="fixed-bottom">
+        <audio id="rock" src="/uploads/Kalimba.mp3" preload="auto"></audio>
+        <div id="audiocontroller" class="text-right mr-2">
+            <a id="play" href="#" class="btn"><span class="oi oi-media-play"></span></a>
+            <a id="pause" href="#" class="btn"><span class="oi oi-media-pause"></span></a>
+            <a id="currentTrack">Rock</a>
+        </div>
+    </div>
+
 </div>
 
 <script type="text/javascript">
