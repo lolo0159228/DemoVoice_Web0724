@@ -18,3 +18,20 @@ flex: 1;
 text-size {
     font-size: 10 vmin;
 }
+
+.hidden {
+    display:none;
+}
+
+.btn{
+    border-radius:15px;
+}
+
+.box-shadow{
+    box-shadow: 1px 1px 5px #DADADA;
+      }
+
+.border-padding {
+    padding:10px 10px 10px;
+}
+

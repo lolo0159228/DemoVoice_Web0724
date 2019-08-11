@@ -1,0 +1,19 @@
+.list-active{
+    border-left:10px solid #E74C3C;
+    color:#E74C3C;
+}
+
+.list-group-item:hover{
+    border-left:10px solid #E74C3C;
+    color:#E74C3C;
+}
+
+.list-group-flush{
+    font-size:12px;
+    padding:2px 2px 2px;
+    border:10px;
+}
+
+.bread-item.active::before {
+    content:"/";
+}

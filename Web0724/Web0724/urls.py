@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from home.views import home,login,register,logout,Voice
+from home.views import home,login,register,logout,manage,uploads
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +23,7 @@ urlpatterns = [
     path(r'^home/login',login,name="login"),
     path(r'^home/logout',logout,name="logout"),
     path(r'^home/register',register,name="register"),
+    path(r'^home/manage',manage,name="manage"),
+    path(r'^home/manage/uploads',uploads,name="uploads"),
     path(r'^captcha',include('captcha.urls')),
 ]

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %} YoutubeVoice {% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/manage.css">
+{% endblock %}
+
+{% block content1 %}
+    {% include 'player.html' %}
+<div class="container-fluid overflow-x-hidden">
+    <div class="container mt-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item pl-3">
+               <a class="btn btn-light btn-sm " href="#">會員中心</a>
+            </li>
+            <li class="nav-item pl-3">
+               <a class="btn btn-danger btn-sm  active" href="#">我的音樂庫</a>
+            </li>
+        </ul>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 col-md-3 col-lg-3 box-shadow mb-4 border-padding ">
+               <p>音樂庫</p>
+                <div class="list-group list-group-flush list-group-menu">
+                    <a href="{% url 'manage' %}" data-target="#link1" class="list-group-item list-group-item-action">我的歌單</a>
+                    <a href="{% url 'uploads' %}" class="list-group-item list-group-item-action">上傳音樂</a>
+                    <a href="#" class="list-group-item list-group-item-action">播放紀錄</a>
+                </div>
+            </div>
+            <div class="col-sm-9 col-md-9 col-lg-3">
+                <ul class="nav">
+                    <li class="nav-item">{% block manage %}音樂庫{% endblock %}</li>
+                    <li class="nav-item bread-item active">{% block uploads %}我的歌單{% endblock %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<script type="text/javascript">
+$(function(){
+    $("list-group-item a").filter(function(){
+        return $(this).href == location.href
+    }).parent().addClass('list-active').siblings().removeClass('list-active');
+});
+
+    $(document).ready(function(){
+        $("list-group-item").click(function(){
+            $("list-group-item").removeClass("list-active");
+            $(this).addClass("list-active");
+        });
+    });
+</script>

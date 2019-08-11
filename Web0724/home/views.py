@@ -7,6 +7,12 @@ def home(request):
     voices = Voice.objects.all()
     return render(request, 'home.html', {"voices": voices})
 
+def manage(request):
+    return render(request,'manage.html')
+
+def uploads(requset):
+    return render(requset,'uploads.html')
+
 def register(request):
     if request.method == "POST":
         user = request.POST.get('user',None)

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
     <title>{% block title%}{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous" />
@@ -14,12 +15,12 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/^home/">YoutubeVoice</a>
+        <a class="navbar-brand" href="/^home/">DemoVoice</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a href="#" class="nav-link">排行榜</a>
                 </li>
@@ -39,41 +40,36 @@
                     <a href="#" class="nav-link">APP</a>
                 </li>
             </ul>
-        </div>
-        <div>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown mr-1">
-                    <a href="#" class="btn nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><span class="oi oi-magnifying-glass"></span></a>
-                    <div class="dropdown-menu">
-                        <div class="pr-3 pl-3">
-                            <input class="dropdown-item" placeholder="找音樂? StreetVoice">
+            <div>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown mr-1">
+                        <a href="#" class="btn nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><span class="oi oi-magnifying-glass"></span></a>
+                        <div class="dropdown-menu">
+                            <div class="pr-3 pl-3">
+                                <input class="dropdown-item" placeholder="找音樂? DemoVoice">
+                            </div>
+                            <div class="dropdown-divide"></div>
+                            <div class="mt-2 pr-3 pl-3">
+                                <p>搜尋紀錄</p>
+                                <input class="dropdown-item" placeholder="你還沒有搜尋紀錄">
+                            </div>
                         </div>
-                        <div class="dropdown-divide"></div>
-                        <div class="mt-2 pr-3 pl-3">
-                            <p>搜尋紀錄</p>
-                            <input class="dropdown-item" placeholder="你還沒有搜尋紀錄">
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item mr-1">
-                    <a href="#" class="btn"><span class="oi oi-cloud-upload"></span></a>
-                </li>
-                {% if request.session.is_login %}
-                    <li class="nav-item">
-                        <a href="#" class="btn nav-link" ><span class="oi oi-person"></span>{{ request.session.user_name }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'logout' %}" class="btn btn-primary">登出</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a href="/^home/login" class="btn btn-danger" >登入/註冊</a>
-                    </li>
-                {% endif %}
-            </ul>
+                    {% if request.session.is_login %}
+                        <li class="nav-item">
+                            <a href="{% url 'manage' %}" class="btn nav-link" ><span class="oi oi-person"></span> {{ request.session.user_name }} </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'logout' %}" class="btn btn-primary">登出</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="/^home/login" class="btn btn-danger" >登入/註冊</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-
-
     </nav>
 
     {% block content1 %}{% endblock %}
@@ -103,12 +99,12 @@
             <div class="col-4">
                 <ul class="list-unstyled text-size"><strong>其他</strong>
                    <li>人才招募</li>
-                   <li>RoadVoice媒體</li>
+                   <li>DemoVoice媒體</li>
                    <li>常見問題/會員中心</li>
                </ul>
             </div>
             <div class="col-12 text-center">
-                <p>Copyright@TEST 2019-07-28 RoadVoice路聲</p>
+                <p>Copyright@TEST 2019-07-28 DemoVoice</p>
             </div>
 
         </div>

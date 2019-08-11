@@ -3,16 +3,30 @@
   color: #23527c;
 }
 
-#audiocontroller {
+.audiocontroller {
   background-color:#ffffff;
   border: 1px solid #ccc;
   padding: 5px;
   max-width: 200px;
   margin-right: auto;
   margin-left: auto;
-  position:fixed;
 }
 
 #play {
   margin-left: 5px;
+}
+
+.react-player {
+    max-width:200px;
+    border-top:10px solid #C9D8E1;
+    background-color:#E5EDF2;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+
+}
+
+@media (min-width:900px){
+    .react-player{
+        display:block;
+    }
 }
