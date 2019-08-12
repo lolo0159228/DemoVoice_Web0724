@@ -2,9 +2,13 @@ var currentTrack = null;
 var paused = false;
 
 $(document).ready(function(){
-    currentTrack = $('#currentTrack').val();
+    var a = document.getElementById("currentTrack");
+    currentTrack = a.getAttribute("value");
+    //currentTrack = $('#currentTrack').val();
 
     $('#play').click(function(){
+        let y = document.getElementById("currentTrack");
+        alert(y.innerHTML);
         play();
     });
     $('#stop').click(function(){
@@ -17,10 +21,11 @@ $(document).ready(function(){
 
 
 function play(){
-    if (!pause){
+    if (pause == false){
         stop();
-        currentTrack = $('#currentTrack').val();
-        document.getElementById(currentTrack).load();
+       // currentTrack = $('#currentTrack').val();
+       currentTrack = a.getAttribute("value");
+       document.getElementById(currentTrack).load();
     }
     document.getElementById(currentTrack).play();
 }
