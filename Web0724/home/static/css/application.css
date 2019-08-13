@@ -27,6 +27,10 @@ text-size {
     border-radius:15px;
 }
 
+.btn-circle{
+    border-radius:20px;
+}
+
 .box-shadow{
     box-shadow: 1px 1px 5px #DADADA;
       }
