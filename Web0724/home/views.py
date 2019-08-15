@@ -8,7 +8,8 @@ def home(request):
     return render(request, 'home.html', {"voices": voices})
 
 def manage(request):
-    return render(request,'manage.html')
+    playlists = Voice.objects.all()
+    return render(request,'manage.html',{"playlists":playlists})
 
 def uploads(requset):
     return render(requset,'uploads.html')

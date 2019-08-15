@@ -3,8 +3,8 @@
 {% block css %}
 <link rel="stylesheet" type="text/css" href="/static/css/manage.css">
 {% endblock %}
-{% include 'player.html' %}
 {% block content1 %}
+{% include 'player.html' %}
 <div class="container-fluid overflow-x-hidden">
     <div class="container mt-3">
         <ul class="nav nav-pills">
@@ -12,7 +12,7 @@
                <a class="btn btn-light btn-sm " href="#">會員中心</a>
             </li>
             <li class="nav-item pl-3">
-               <a class="btn btn-danger btn-sm  active" href="#">我的音樂庫</a>
+               <a class="btn btn-danger btn-sm  active" href="{% url 'manage' %}">我的音樂庫</a>
             </li>
         </ul>
         <hr>
@@ -27,11 +27,31 @@
                     <a href="#" class="list-group-item list-group-item-action">播放紀錄</a>
                 </div>
             </div>
-            <div class="col-sm-9 col-md-9 col-lg-3">
-                <ul class="nav">
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <ul class="nav mb-2">
                     <li class="nav-item">{% block manage %}音樂庫{% endblock %}</li>
                     <li class="nav-item bread-item active">{% block uploads %}我的歌單{% endblock %}</li>
                 </ul>
+                <div class="box-shadow border-padding mb-2">
+                    {% block managecontent %}
+                    <h4>歌單</h4>
+                    <ul id="playlist" class="list-group list-group-flush ">
+                        {% for playlist in playlists %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                            <div class="mr-3"><span class="oi oi-headphones"></span></div>
+                            <div>
+                                <a href="#" class="play-voice" >{{playlist.Songname}}</a>
+                                <p>一首歌曲</p>
+                            </div>
+                            <div class="text-right ml-auto">
+                                <button id="like" value="N" class="btn btn-sm btn-light btn-circle"><span class="align-items-center oi oi-heart"></span></button>
+                                <button id="replay" class="btn btn-sm btn-light btn-circle"><span class="align-items-center oi oi-random"></span></button>
+                            </div>
+                        </li>
+                       {% endfor %}
+                    </ul>
+                    {% endblock %}
+                </div>
             </div>
         </div>
     </div>

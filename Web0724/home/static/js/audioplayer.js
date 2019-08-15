@@ -6,8 +6,8 @@ var a = null;
 $(document).ready(function(){
     a = document.getElementById("currentTrack");
     currentTrack = a.getAttribute("value");
-    audio = "<audio  id='Rock' src='/static/uploads/Sleep_Away.mp3' preload='auto'></audio>";
-    getaudio();
+    //audio = "<audio  id='Rock' src='/static/uploads/Sleep_Away.mp3' preload='auto'></audio>";
+    //getaudio();
     //currentTrack = $('#currentTrack').val();
 
     $('#play').click(function(){
@@ -21,6 +21,25 @@ $(document).ready(function(){
     });
     $('#pause').click(function(){
         pause();
+    });
+
+    $("#like").click(function(){
+        var like = document.getElementById("like");
+        var likeYN = like.getAttribute("value");
+        if (likeYN == 'N'){
+             $("#like").addClass("btn-danger").removeClass("btn-light");
+             like.setAttribute('value','Y');
+         }else{
+             $("#like").addClass("btn-light").removeClass("btn-danger");
+             like.setAttribute('value','N');
+        };
+    });
+
+    $(".play-voice").click(function(){
+        var b = $(this).html();
+        alert(b.innerHTML);
+        getaudio(b);
+        play();
     });
 });
 
@@ -56,7 +75,7 @@ function pause(){
     document.getElementById(currentTrack).pause();
 }
 
-function getaudio(){
-    document.getElementById('play').innerHTML+= audio;
+function getaudio(Songname){
+    document.getElementById('play').innerHTML+= "<audio  id='Rock' src='/static/uploads/"+Songname+"' preload='auto'></audio>";
 }
 
