@@ -19,7 +19,7 @@ class Voice(models.Model):
     Songname = models.CharField(max_length=50,blank=False,unique=True)
     author = models.CharField(max_length=50,blank=False)
     song_src = models.TextField(blank=False)
-    File = models.FileField(upload_to='uploads/')
+    File = models.FileField(upload_to='home/static/uploads')
     introduce = models.TextField()
     like = models.ManyToManyField(to=User,blank=True)
     click = models.IntegerField(default=0)

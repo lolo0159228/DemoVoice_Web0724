@@ -6,8 +6,7 @@
 {% endblock %}
 
 {% block content1 %}
-    <div class="container">
-
+<div  class="pjax-container container-fluid overflow-x-hidden">
       <form class="form-signin border-block mt-2 box-shadow" method="post" action="login" >
           {% if message %}
           <div class="alert alert-warning">{{ message }}</div>
@@ -35,6 +34,5 @@
       <div class="border-block">
           <a href="{% url 'register' %}">還沒有帳號嗎?<span class="text-danger"> 立即註冊</span></a>
       </div>
-
-    </div>
+</div>
 {% endblock %}

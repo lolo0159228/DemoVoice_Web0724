@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home',
     'Web0724',
     'captcha',
+    'easy_pjax',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +61,9 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR,'templates').replace('\\',"/")],
         'APP_DIRS': True,
         'OPTIONS': {
+            "builtins": [
+                "easy_pjax.templatetags.pjax_tags"
+            ],
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',

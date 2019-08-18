@@ -5,11 +5,19 @@ from .form import UserForm
 # Create your views here.
 def home(request):
     voices = Voice.objects.all()
-    return render(request, 'home.html', {"voices": voices})
+    if request.META.get('X-PJAX') == 'true':
+        return render(request, 'home.html', {"voices": voices, "pjax": 'true'})
+    else:
+        return render(request, 'home.html', {"voices": voices})
+
+
 
 def manage(request):
     playlists = Voice.objects.all()
-    return render(request,'manage.html',{"playlists":playlists})
+    if request.META.get('X-PJAX') == 'true':
+        return render(request,'manage.html',{"playlists":playlists,'pjax':'true'})
+    else:
+        return render(request, 'manage.html', {"playlists": playlists})
 
 def uploads(requset):
     return render(requset,'uploads.html')
@@ -67,12 +75,12 @@ def login(request):
 
 def logout(request):
     if not request.session.get('is_login'):
-        return redirect('/^home/')  # 如果本来就未登录，也就没有登出一说
+        return redirect('/^home/login')  # 如果本来就未登录，也就没有登出一说
     else:
         request.session.flush()
         # 或者使用下面的方法
         # del request.session['is_login']
         # del request.session['user_id']
         # del request.session['user_name']
-        return redirect("/^home/")
+        return redirect("/^home/login")
 

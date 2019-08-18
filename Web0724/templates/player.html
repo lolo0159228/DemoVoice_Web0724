@@ -1,15 +1,14 @@
 <link rel="stylesheet" type="text/css" href="/static/css/video.css">
 <link rel="stylesheet" type="text/css" href="/static/css/audioplayer.css">
-<script src="/static/js/audioplayer.js"></script>
 
-    <div id="player" class="fixed-bottom hidden react-player ">
-        <div id="audiocontroller" class="ml-2 mr-2">
-            <button id="play" class="btn btn-sm btn-dark btn-circle"><span id="icon-audio" class="text-center oi oi-media-play"></span></button>
+
+    <div  class="fixed-bottom hidden react-player ">
+        <div class="progress">
+            <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" style="width:70%"></div>
+        </div>
+        <div class="ml-2 mr-2 audiocontroller">
+            <button id="play" class="btn btn-sm btn-danger btn-circle"><span id="icon-audio" class="align-items-center oi oi-media-play"></span></button>
             <button id="pause" class="hidden btn btn-sm btn-dark btn-circle"><span class="oi oi-media-pause"></span></button>
-            <a id="currentTrack" value="Rock">Sleep Away</a>
+            <a id="currentTrack" value="Rock"></a>
         </div>
     </div>
-
-<script>
-
-</script>

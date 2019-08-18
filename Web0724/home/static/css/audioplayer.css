@@ -4,12 +4,12 @@
 }
 
 .audiocontroller {
-  background-color:#ffffff;
-  border: 1px solid #ccc;
-  padding: 5px;
+  padding: 10px 5px 5px;
   max-width: 200px;
   margin-right: auto;
   margin-left: auto;
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
 }
 
 #play {
@@ -18,11 +18,14 @@
 
 .react-player {
     max-width:200px;
-    border-top:10px solid #C9D8E1;
-    background-color:#E5EDF2;
-    border-top-left-radius:10px;
-    border-top-right-radius:10px;
+    background-color:rgba(200,200,200,0.8) !important;
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
 
+}
+
+.progress{
+    max-height:3px;
 }
 
 @media (min-width:900px){
