@@ -2,12 +2,15 @@ var currentTrack = null;
 var paused = true;
 var audio = null;
 var a = null;
+var progressbar = null;
 //var containerDOM = null;
 
 
 $(document).ready(function(){
     a = document.getElementById("currentTrack");
     currentTrack = a.getAttribute("value");
+    audio = document.getElementById(currentTrack);
+    progressbar = document.getElementById('audioProgress');
     //containerDOM = document.getElementById("container");
 
     $('#play').click(function(){
@@ -46,13 +49,17 @@ function play(){
     if (pause == false){
         currentTrack = a.getAttribute("value");
         $('#icon-audio').addClass(" oi-media-play").removeClass(" oi-media-pause");
-       document.getElementById(currentTrack).pause();
+        audio = document.getElementById(currentTrack);
+        audio.pause();
        pause = true;
     }else{
         $('#icon-audio').addClass(" oi-media-pause").removeClass(" oi-media-play");
         //document.getElementById(currentTrack).load(); 重載更新
-        document.getElementById(currentTrack).play();
+        audio = document.getElementById(currentTrack);
+        audio.play();
         pause = false;
+        audio.ontimeupdate = function() {handleProgress()};
+        //audio.addEventListener('timeupdate',handleProgress());
     }
 
 }
@@ -68,6 +75,13 @@ function pause(){
     paused = true;
     document.getElementById(currentTrack).pause();
 }
+
+function handleProgress(){
+    const percent = (audio.currentTime/audio.duration)*100;
+    progressbar.style.cssText = 'width:'+percent+'%';
+};
+
+
 /*
 function getaudio(Songname){
    //document.getElementById('play').innerHTML+= "<audio  id='Rock' src='/static/uploads/"+Songname+"' preload='auto'></audio>";

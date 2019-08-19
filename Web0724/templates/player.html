@@ -1,10 +1,8 @@
 <link rel="stylesheet" type="text/css" href="/static/css/video.css">
 <link rel="stylesheet" type="text/css" href="/static/css/audioplayer.css">
-
-
     <div  class="fixed-bottom hidden react-player ">
         <div class="progress">
-            <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" style="width:70%"></div>
+            <div id="audioProgress" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width:0%"></div>
         </div>
         <div class="ml-2 mr-2 audiocontroller">
             <button id="play" class="btn btn-sm btn-danger btn-circle"><span id="icon-audio" class="align-items-center oi oi-media-play"></span></button>
