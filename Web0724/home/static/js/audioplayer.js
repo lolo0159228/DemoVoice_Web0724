@@ -23,6 +23,10 @@ $(document).ready(function(){
         pause();
     });
 
+    $('.yt-id').click(function(){
+
+    });
+
   /*  $(".like").click(function(){
         var like = $(this).prop('value');
         if (like == 'N'){
@@ -44,22 +48,20 @@ $(document).ready(function(){
 
 });
 
-
 function play(){
     if (pause == false){
         currentTrack = a.getAttribute("value");
         $('#icon-audio').addClass(" oi-media-play").removeClass(" oi-media-pause");
         audio = document.getElementById(currentTrack);
         audio.pause();
-       pause = true;
+        pause = true;
     }else{
         $('#icon-audio').addClass(" oi-media-pause").removeClass(" oi-media-play");
         //document.getElementById(currentTrack).load(); 重載更新
         audio = document.getElementById(currentTrack);
         audio.play();
         pause = false;
-        audio.ontimeupdate = function() {handleProgress()};
-        //audio.addEventListener('timeupdate',handleProgress());
+        audio.ontimeupdate = function() {handleProgress(audio.CurrentTime,audio.Duration)};
     }
 
 }
@@ -76,9 +78,12 @@ function pause(){
     document.getElementById(currentTrack).pause();
 }
 
-function handleProgress(){
-    const percent = (audio.currentTime/audio.duration)*100;
+function handleProgress(CurrentTime,Duration){
+    const percent = (CurrentTime/Duration)*100;
     progressbar.style.cssText = 'width:'+percent+'%';
+    if (percent >= 100) {
+        progressbar.style.cssText = 'width:0%';
+    };
 };
 
 
