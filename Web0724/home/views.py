@@ -2,22 +2,29 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from home.models import User,Voice,Comment
 from .form import UserForm
+from .YTgetData import YTGetData
+from django.http import JsonResponse
+from django.db.models import ObjectDoesNotExist
+
 # Create your views here.
 def home(request):
+    YT = YTGetData()
     voices = Voice.objects.all()
     if request.META.get('X-PJAX') == 'true':
-        return render(request, 'home.html', {"voices": voices, "pjax": 'true'})
+        #return render(request, 'home.html', {"voices": voices, "pjax": 'true'})
+        return render(request, 'home.html', {"voices": YT, "pjax": 'true'})
     else:
-        return render(request, 'home.html', {"voices": voices})
+        #return render(request, 'home.html', {"voices": voices})
+        return render(request, 'home.html', {"voices": YT})
 
 
 
 def manage(request):
     playlists = Voice.objects.all()
     if request.META.get('X-PJAX') == 'true':
-        return render(request,'manage.html',{"playlists":playlists,'pjax':'true'})
+        return render(request,'manage.html',{"playlists":playlists,"user":str(request.session['user_id']),'pjax':'true'})
     else:
-        return render(request, 'manage.html', {"playlists": playlists})
+        return render(request, 'manage.html', {"playlists": playlists,"user":str(request.session['user_id'])})
 
 def uploads(requset):
     return render(requset,'uploads.html')
@@ -84,3 +91,39 @@ def logout(request):
         # del request.session['user_name']
         return redirect("/^home/login")
 
+def like_change(request):
+    try:
+        UserID = User.objects.get(account_number=str(request.session['user_id']))
+        SN = request.GET.get('SongName')
+        likeYN = request.GET.get('likeYN')
+        Song = Voice.objects.get(Songname=SN)
+    except ObjectDoesNotExist:
+        return ErrorResponse(401, 'object not exist')
+
+
+
+    if likeYN == 'false':
+        try:
+            Song.like.add(UserID)
+            return SuccessResponse('Y')
+        except:
+            return ErrorResponse(401,'not created')
+    else:
+        try:
+            Song.like.remove(UserID)
+            return SuccessResponse('N')
+        except:
+            return ErrorResponse(401,'not Deleted')
+
+def SuccessResponse(likeYN):
+    data = {}
+    data['status'] = 'SUCCESS'
+    data['likeYN'] = likeYN
+    return JsonResponse(data)
+
+def ErrorResponse(code, message):
+    data = {}
+    data['status'] = 'ERROR'
+    data['code'] = code
+    data['message'] = message
+    return JsonResponse(data)
