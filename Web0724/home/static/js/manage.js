@@ -2,14 +2,41 @@ var containerDOM = null;
 
 $(document).ready(function(){
     containerDOM = document.getElementById("container");
+   /* var liketags = document.getElementsByClassName('likeactive')
+    for (let i=0; i<liketags.length;i++){
+
+    }
+*/
     $(".like").click(function(){
-        var like = $(this).prop('value');
-        if (like == 'N'){
-             $(this).addClass("btn-danger").removeClass("btn-light").attr('value','Y');
-         }else{
-             $(this).addClass("btn-light").removeClass("btn-danger").attr('value','N');
-        };
+        var likeA = this.getAttribute("class")  //this.getElementsByClassName('likeactive').length ==0
+        if (likeA.match('likeactive')){
+            var likeYN = true
+            $(this).addClass("btn-light").removeClass("btn-danger likeactive").attr('value','N');
+        }else{
+            var likeYN = false
+            $(this).addClass("btn-danger likeactive").removeClass("btn-light").attr('value','Y');
+        }
+        $.ajax({
+            url: this.dataset.url,
+            type:'GET',
+            dataType:'json',
+            data:{
+                likeYN: likeYN,
+                SongName: this.dataset.title
+            },
+            cache:false,
+            success:function(data){
+                console.log(data)
+            },
+            error:function(e){
+                console.log(e)
+            }
+
+        });
+
     });
+
+
 
     $(".play-voice").click(function(){
         var b = $(this).text();
@@ -23,6 +50,9 @@ $(document).ready(function(){
 
 });
 
+function likeChange(){
+
+};
 
 function getaudio(Songname){
     let Rock = document.getElementById('Rock');
