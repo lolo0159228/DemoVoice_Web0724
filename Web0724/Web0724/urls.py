@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from home.views import home,login,register,logout,manage,uploads
+from home.views import home,login,register,logout,manage,uploads,like_change,AddSong,mylike,SearchYT
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
@@ -27,5 +27,9 @@ urlpatterns = [
     path(r'^home/register',register,name="register"),
     path(r'^home/manage',manage,name="manage"),
     path(r'^home/manage/uploads',uploads,name="uploads"),
+    path(r'home/manage/mylike',mylike,name="mylike"),
     path(r'^captcha',include('captcha.urls')),
+    path(r'^home/manage/like_change',like_change,name="like_change"),
+    path(r'^home/manage/AddSong',AddSong,name="AddSong"),
+    path(r'^home/SearchYT',SearchYT,name="SearchYT"),
 ]

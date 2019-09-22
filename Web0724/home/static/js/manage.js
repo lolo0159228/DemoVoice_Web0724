@@ -16,13 +16,15 @@ $(document).ready(function(){
             var likeYN = false
             $(this).addClass("btn-danger likeactive").removeClass("btn-light").attr('value','Y');
         }
+
         $.ajax({
             url: this.dataset.url,
             type:'GET',
             dataType:'json',
             data:{
                 likeYN: likeYN,
-                SongName: this.dataset.title
+                sid: this.dataset.sid,
+                SongName: this.getElementsByTagName('p')[0].innerHTML
             },
             cache:false,
             success:function(data){
@@ -49,10 +51,6 @@ $(document).ready(function(){
     });
 
 });
-
-function likeChange(){
-
-};
 
 function getaudio(Songname){
     let Rock = document.getElementById('Rock');

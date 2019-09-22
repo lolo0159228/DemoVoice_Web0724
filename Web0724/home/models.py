@@ -15,8 +15,11 @@ class User(models.Model):
     password = models.CharField(max_length=15,blank=False)
     createdate = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return self.account_number
+
 class Voice(models.Model):
-    Songname = models.CharField(max_length=50,blank=False,unique=True)
+    Songname = models.CharField(max_length=100,blank=False,unique=True)
     author = models.CharField(max_length=50,blank=False)
     song_src = models.TextField(blank=False)
     File = models.FileField(upload_to='home/static/uploads')
@@ -27,10 +30,19 @@ class Voice(models.Model):
     updatedate = models.DateTimeField(default=timezone.now)
 
     def __str__(self):  #定義一個 __str__() 方法， 回覆 self.songname 值，這是在範本中此物件預設顯示的值，在 admin 介面亦顯示此值
-        return self.Songname
+        return (str(self.id))+' '+(self.Songname)
 
     class Meta:
         ordering = ['-updatedate'] #從大到小排序
+
+class MySong(models.Model):
+    Song = models.ManyToManyField(to=Voice,blank=False)
+    User = models.OneToOneField(to=User,blank=False,on_delete=models.CASCADE)
+    createdate = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return str(self.User)
+
 
 class Comment(models.Model):
     voice = models.ForeignKey(Voice,on_delete=models.CASCADE)  #on_delete=models.CASCADE 為 連串刪除

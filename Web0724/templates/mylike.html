@@ -1,0 +1,29 @@
+{% extends "manage.html" %}
+{% load likes_tags %}
+{% include 'managetitle.html' %}
+{% block uploads %}我的喜歡{% endblock %}
+{% block managecontent %}
+<p>喜歡的歌曲</p>
+                    <ul id="playlist" class="list-group list-group-flush ">
+                        {% for LikeSong in mylikes %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                            <div class="mr-3">
+                                <button type="button" class="btn btn-sm btn-light btn-circle yt-id" data-YtId="{{LikeSong.song_src}}" data-Yttitle="{{LikeSong.Songname}}" data-Ytauthor="{{LikeSong.author}}">
+                                        <span class="oi oi-media-play"></span>
+                                </button>
+                            </div>
+                            <div>
+                                <a href="#" class="play-voice" >{{LikeSong.Songname}}</a>
+                                <p class="info1">{{LikeSong.author}}</p>
+                            </div>
+                            <div class="text-right ml-auto">
+                                {% get_like_status  LikeSong.Songname user as likeactive %}
+                                <button value="N" data-Sid={{LikeSong.id}} class="btn btn-sm  btn-circle like {{ likeactive }}" data-url={% url 'like_change' %} >
+                                    <p class="hidden">{{LikeSong.Songname}}</p>
+                                    <span class="align-items-center oi oi-heart"></span>
+                                </button>
+                            </div>
+                        </li>
+                       {% endfor %}
+                    </ul>
+{% endblock %}

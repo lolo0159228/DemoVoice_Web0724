@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User,Voice,Comment
+from .models import User,Voice,Comment,MySong
 # Register your models here.
 
 class Useradmin(admin.ModelAdmin):
@@ -17,3 +17,4 @@ class CommentModelAdmin(admin.ModelAdmin):
 admin.site.register(User,Useradmin)
 admin.site.register(Voice)
 admin.site.register(Comment,CommentModelAdmin)
+admin.site.register(MySong)

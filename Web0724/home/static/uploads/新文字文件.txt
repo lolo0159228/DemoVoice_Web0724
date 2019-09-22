@@ -1,0 +1,54 @@
+AIzaSyDvrF5pvST7ILS8jLGl6WWVGKndikD_jgw
+大家好
+
+我使用MYSQL資料庫，預設是utf8mb4
+在MYSQL WorkBench直接塞中文字，都可以正常
+
+但我不管TFDConnection的Character設utf8mb4 或 utf8
+用TFDQuery  insert 或update 中文字時，就會出現亂碼
+
+亂碼像這樣：
+我插入的中文字：型密
+register.css
+
+
+<style type="text/css">
+        .border-block{
+        font-size:14px;
+        margin: 0 auto 15px;
+        border: 1px solid #e5e5e5;
+        background-color:#ffffff;
+      }
+
+
+    </style>
+
+
+
+
+login
+
+.form-signin {
+        background-color: #ffffff;
+        border: 1px solid #e5e5e5;
+        padding: 20px 20px 20px;
+      }
+
+      .border-block{
+        max-width: 300px;
+        font-size:12px;
+        margin: 0 auto 15px;
+        text-align:center
+      }
+
+      .btn-fb{
+        background-color:#3a5795;
+        color:#ffffff;
+      }
+
+
+-----
+
+{% for playlike in playlist.like.all %}
+                                            {% if playlike and playlike.account_number == user %} btn-danger {% endif %}
+                                        {% endfor %} {% if not playlist.like.all %} btn-light {%endif%}

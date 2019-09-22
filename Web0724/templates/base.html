@@ -129,13 +129,20 @@
 			var addrLast = decodeURI(addr.substring(index + 1, addr.length));
 			var str = decodeURI(addr.substring(0, index));
 
-		if (addrLast == 'manage'){
+		if (addrLast == 'manage')  {
 		    PJAX_loadJS('JS','/static/js/manage.js');
+		    PJAX_loadJS('JS','/static/js/home.js');
+		};
+
+		if (addrLast == 'mylike')  {
+		    PJAX_loadJS('JS','/static/js/manage.js');
+		    PJAX_loadJS('JS','/static/js/home.js');
 		};
 
         if (addrLast == ''){
 		    PJAX_loadJS('JS','/static/js/YTplayer.js');
             PJAX_loadJS('JS','https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js');
+            PJAX_loadJS('JS','/static/js/home.js');
             PJAX_loadJS('CSS','https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
             PJAX_loadJS('CSS','https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css');
             PJAX_loadJS('CSS','/static/css/register.css');

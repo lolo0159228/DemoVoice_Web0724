@@ -37,3 +37,10 @@ text-size {
     padding:10px 10px 10px;
 }
 
+.search-form{
+    padding: 10px;
+  }
+
+.form-control-sm{
+    border: 1px solid #e5e5e5;
+}
